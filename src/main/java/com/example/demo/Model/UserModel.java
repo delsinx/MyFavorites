@@ -42,6 +42,6 @@ public class UserModel {
     private String password;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
 }
