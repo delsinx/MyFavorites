@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PutMapping("/update")
-    public void updateUserInfo(@Valid @RequestBody UserModel userModel) {}
+    public void updateUserInfo( @RequestBody UserModel userModel) {}
 
 
 
