@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 
@@ -32,6 +34,18 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDTO showUserByID(@PathVariable Long id){
        return  userService.showUserById(id);
+    }
+
+    @GetMapping ("/allusers")
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
+        List<UserDTO> users = userService.getAllUsers();
+
+        if (users == null || users.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.ok(users);
+        }
+
     }
 
     @DeleteMapping("/delete/{id}")

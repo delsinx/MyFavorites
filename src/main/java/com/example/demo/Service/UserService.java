@@ -5,12 +5,13 @@ import com.example.demo.Mapper.UserMapper;
 import com.example.demo.Model.UserModel;
 import com.example.demo.Repository.UserRepository;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.FutureOrPresent;
+
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 
@@ -43,6 +44,11 @@ public class UserService {
         }else{
             return null;
         }
+    }
+
+    public List<UserDTO>  getAllUsers(){
+        List<UserModel> userModel = userRepository.findAll();
+        return userModel.stream().map(userMapper::map).collect(Collectors.toList());
     }
 
 
